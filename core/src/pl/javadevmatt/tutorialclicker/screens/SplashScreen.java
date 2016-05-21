@@ -3,14 +3,23 @@ package pl.javadevmatt.tutorialclicker.screens;
 import pl.javadevmatt.tutorialclicker.TutorialClickerGame;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 
 public class SplashScreen extends AbstractScreen{
 	
 	private Texture splashImg;
 
-	public SplashScreen(TutorialClickerGame game) {
+	public SplashScreen(final TutorialClickerGame game) {
 		super(game);
 		init();
+		
+		Timer.schedule(new Task() {
+			@Override
+			public void run() {
+				game.setScreen(new GameplayScreen(game));
+			}
+		}, 1);
 	}
 
 	private void init() {
