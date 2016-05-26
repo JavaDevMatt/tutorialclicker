@@ -9,10 +9,10 @@ public class GameplayScreen extends AbstractScreen{
 
 	public GameplayScreen(TutorialClickerGame game) {
 		super(game);
-		init();
 	}
-
-	private void init() {
+	
+	@Override
+	protected void init() {
 		initPlayer();
 	}
 
@@ -34,5 +34,8 @@ public class GameplayScreen extends AbstractScreen{
 	private void update() {
 		stage.act();
 	}
+
+
+	
 
 }
