@@ -40,6 +40,7 @@ public class GameplayScreen extends AbstractScreen{
 					int pointer, int button) {
 				
 				player.reactOnClick();
+				game.addPoint();
 				
 				return super.touchDown(event, x, y, pointer, button);
 			}
