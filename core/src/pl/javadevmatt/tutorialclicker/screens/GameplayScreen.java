@@ -78,6 +78,7 @@ public class GameplayScreen extends AbstractScreen{
 	}
 
 	private void update() {
+		scoreLabel.setText("Score: " + game.getPoints());
 		stage.act();
 	}
 
