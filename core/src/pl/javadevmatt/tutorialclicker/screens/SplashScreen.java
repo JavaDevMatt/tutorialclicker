@@ -18,13 +18,13 @@ public class SplashScreen extends AbstractScreen{
 			public void run() {
 				game.setScreen(new GameplayScreen(game));
 			}
-		}, 1);
+		}, 3);
 	}
 	
 	@Override
 	protected void init() {
 		// TODO implement better assets loading when game grows
-		splashImg = new Texture("badlogic.jpg");
+		splashImg = new Texture("splash.png");
 	}
 
 	
