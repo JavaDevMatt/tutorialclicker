@@ -5,17 +5,14 @@ import pl.javadevmatt.tutorialclicker.entities.Player;
 import pl.javadevmatt.tutorialclicker.ui.IClickCallback;
 import pl.javadevmatt.tutorialclicker.ui.PlayerButton;
 import pl.javadevmatt.tutorialclicker.ui.ResetScoreButton;
-
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import pl.javadevmatt.tutorialclicker.ui.ScoreLabel;
 
 public class GameplayScreen extends AbstractScreen{
 	
 	private Player player;
 	private PlayerButton playerButton;
 	private ResetScoreButton resetScoreButton;
-	private Label scoreLabel;
+	private ScoreLabel scoreLabel;
 
 	public GameplayScreen(TutorialClickerGame game) {
 		super(game);
@@ -42,11 +39,7 @@ public class GameplayScreen extends AbstractScreen{
 	}
 
 	private void initScoreLabel() {
-		LabelStyle labelStyle = new LabelStyle();
-		labelStyle.font = new BitmapFont();
-		scoreLabel = new Label("", labelStyle);
-		scoreLabel.setX(20);
-		scoreLabel.setY(650);
+		scoreLabel = new ScoreLabel();
 		stage.addActor(scoreLabel);
 	}
 
