@@ -1,6 +1,7 @@
 package pl.javadevmatt.tutorialclicker.screens;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import pl.javadevmatt.tutorialclicker.TutorialClickerGame;
 import pl.javadevmatt.tutorialclicker.entities.Player;
@@ -11,7 +12,7 @@ import pl.javadevmatt.tutorialclicker.ui.ScoreLabel;
 
 public class GameplayScreen extends AbstractScreen{
 	
-	private Texture bgTexture;
+	private Image bgImg;
 	private Player player;
 	private PlayerButton playerButton;
 	private ResetScoreButton resetScoreButton;
@@ -23,13 +24,18 @@ public class GameplayScreen extends AbstractScreen{
 	
 	@Override
 	protected void init() {
-		bgTexture = new Texture("bg.png");
+		initBg();
 		initPlayer();
 		initPlayerButton();
 		initResetScoreButton();
 		initScoreLabel();
 	}
 	
+	private void initBg() {
+		bgImg = new Image(new Texture("bg.png"));
+		stage.addActor(bgImg);
+	}
+
 	private void initResetScoreButton() {
 		resetScoreButton = new ResetScoreButton(new IClickCallback() {
 			
@@ -68,10 +74,6 @@ public class GameplayScreen extends AbstractScreen{
 	public void render(float delta) {
 		super.render(delta);
 		update();
-		
-		spriteBatch.begin();
-		spriteBatch.draw(bgTexture, 0, 0);
-		spriteBatch.end();
 		
 		spriteBatch.begin();
 		stage.draw();
