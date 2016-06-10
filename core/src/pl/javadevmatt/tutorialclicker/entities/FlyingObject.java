@@ -28,7 +28,7 @@ public class FlyingObject extends Image{
 	private FlyingObjectType type;
 
 	public FlyingObject(FlyingObjectType type, TutorialClickerGame game){
-		super(new Texture(getTextTureString(type)));
+		super(new Texture(getTextureString(type)));
 		
 		this.type = type;
 		this.game = game;
@@ -62,7 +62,7 @@ public class FlyingObject extends Image{
 		FlyingObject.this.remove();
 	}
 	
-	private static String getTextTureString(FlyingObjectType type) {
+	private static String getTextureString(FlyingObjectType type) {
 		if(FlyingObjectType.MONEY.equals(type)){
 			return MONEY;
 		} else if(FlyingObjectType.PASSIVE.equals(type)){
