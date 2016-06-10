@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import pl.javadevmatt.tutorialclicker.TutorialClickerGame;
 import pl.javadevmatt.tutorialclicker.entities.FlyingObject;
+import pl.javadevmatt.tutorialclicker.entities.FlyingObject.FlyingObjectType;
 import pl.javadevmatt.tutorialclicker.entities.Player;
 import pl.javadevmatt.tutorialclicker.ui.IClickCallback;
 import pl.javadevmatt.tutorialclicker.ui.PlayerButton;
@@ -35,7 +36,7 @@ public class GameplayScreen extends AbstractScreen{
 	}
 	
 	private void initFlyingObjects() {
-		flyingObject1 = new FlyingObject(FlyingObject.MONEY);
+		flyingObject1 = new FlyingObject(FlyingObjectType.PASSIVE, game);
 		stage.addActor(flyingObject1);
 		flyingObject1.flyLikeHell();
 	}
