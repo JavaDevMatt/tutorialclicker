@@ -3,6 +3,7 @@ package pl.javadevmatt.tutorialclicker.entities;
 import pl.javadevmatt.tutorialclicker.TutorialClickerGame;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -21,8 +22,11 @@ public class FlyingObject extends Image{
 	private final static int WIDHT = 80;
 	private final static int HEIGHT = 80;
 	
-	private final static int STARTING_X = 0;
+	private final static int STARTING_X_1 = 0;
+	private final static int STARTING_X_2 = TutorialClickerGame.WIDTH;
 	private final static int STARTING_Y = -100;
+	
+	private int startingX;
 	
 	private TutorialClickerGame game;
 	private FlyingObjectType type;
@@ -37,7 +41,8 @@ public class FlyingObject extends Image{
 		this.setSize(WIDHT, HEIGHT);
 		
 		// starting position
-		this.setPosition(STARTING_X, STARTING_Y);
+		startingX = MathUtils.randomBoolean() ? STARTING_X_1 : STARTING_X_2;
+		this.setPosition(startingX, STARTING_Y);
 		
 		this.addListener(new ClickListener(){
 			@Override
@@ -74,14 +79,26 @@ public class FlyingObject extends Image{
 
 	public void flyLikeHell(){
 		
+		int xSign = 0;
+		if(startingX == STARTING_X_1){
+			xSign = 1;
+		} else {
+			xSign = -1;
+		}
+		
+		int time1 = MathUtils.random(1, 6);
+		int time2 = MathUtils.random(1, 6);
+		
+		int randomYEffect = MathUtils.random(-100, 500);
+		
 		Action a = Actions.parallel(
-				Actions.moveBy(300, 200, 5),
-				Actions.rotateBy(360, 5)
+				Actions.moveBy(xSign * 300 + (MathUtils.random(-200, 200)), 200 + randomYEffect, time1),
+				Actions.rotateBy(360, time1)
 				);
 		
 		Action b = Actions.parallel(
-				Actions.moveBy(-500, 900, 3),
-				Actions.rotateBy(360, 3)
+				Actions.moveBy(xSign * -500 + (MathUtils.random(-200, 200)), 900, time2),
+				Actions.rotateBy(360, time2)
 				);
 		
 		Action c = Actions.run(new Runnable() {
