@@ -62,6 +62,8 @@ public class FlyingObject extends Image{
 	private void playSpawnSound() {
 		if(FlyingObjectType.MONEY.equals(type)){
 			game.getSoundService().playMoneySound();
+		} else {
+			game.getSoundService().playBookSound();
 		}
 	}
 
@@ -72,6 +74,7 @@ public class FlyingObject extends Image{
 			game.addPassiveIncome();
 		}
 		
+		game.getSoundService().playPickSound();
 		FlyingObject.this.remove();
 	}
 	
