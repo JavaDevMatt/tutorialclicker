@@ -41,7 +41,6 @@ public class TutorialClickerGame extends Game {
 		soundService = new SoundService();
 	}
 
-	
 
 	/**
 	 * ---------------------
