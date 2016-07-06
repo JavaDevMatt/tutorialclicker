@@ -1,13 +1,17 @@
 package pl.javadevmatt.tutorialclicker.service;
 
+import java.util.concurrent.TimeUnit;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public class ScoreService {
 	
 	public final static String GAME_PREFS = "pl.javadevmatt.preclicker.prefs";
 	public final static String GAME_SCORE = "pl.javadevmatt.preclicker.prefs.score";
 	public final static String GAME_PASSIVE_INCOME = "pl.javadevmatt.preclicker.prefs.passiveincome";
+	public final static String GAME_SAVED_TIMESTAMP = "pl.javadevmatt.preclicker.prefs.savedtimestamp";
 	
 	private Preferences prefs;
 	
@@ -22,6 +26,18 @@ public class ScoreService {
 		prefs =  Gdx.app.getPreferences(GAME_PREFS);
 		loadScore();
 		loadPassiveIncome();
+		calculateGainedPassiveIcome();
+	}
+
+	private void calculateGainedPassiveIcome() {
+		long savedTimestamp = getSavedTimestamp();
+		if(savedTimestamp > 0){
+			long millisPassed = TimeUtils.timeSinceMillis(savedTimestamp);
+			long seconds = TimeUnit.MILLISECONDS.toSeconds(millisPassed);
+			System.out.println("Passed seconds:" + seconds);
+		} else {
+			// do nothing
+		}
 	}
 
 	private void loadScore() {
@@ -65,6 +81,15 @@ public class ScoreService {
 	
 	public int getPassiveIncome(){
 		return passiveIncome;
+	}
+	
+	private long getSavedTimestamp(){
+		return prefs.getLong(GAME_SAVED_TIMESTAMP);
+	}
+
+	public void saveCurrentTimestamp() {
+		prefs.putLong(GAME_SAVED_TIMESTAMP, TimeUtils.millis());
+		prefs.flush();
 	}
 
 }
