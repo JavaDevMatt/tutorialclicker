@@ -4,10 +4,11 @@ import pl.javadevmatt.tutorialclicker.TutorialClickerGame;
 import pl.javadevmatt.tutorialclicker.controllers.FlyingObjectController;
 import pl.javadevmatt.tutorialclicker.entities.Player;
 import pl.javadevmatt.tutorialclicker.service.PassiveIncomeService;
+import pl.javadevmatt.tutorialclicker.ui.BasicDialog;
 import pl.javadevmatt.tutorialclicker.ui.IClickCallback;
 import pl.javadevmatt.tutorialclicker.ui.PlayerButton;
 import pl.javadevmatt.tutorialclicker.ui.ResetScoreButton;
-import pl.javadevmatt.tutorialclicker.ui.ScoreLabel;
+import pl.javadevmatt.tutorialclicker.ui.GameLabel;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -18,7 +19,7 @@ public class GameplayScreen extends AbstractScreen{
 	private Player player;
 	private PlayerButton playerButton;
 	private ResetScoreButton resetScoreButton;
-	private ScoreLabel scoreLabel;
+	private GameLabel scoreLabel;
 	private FlyingObjectController flyingObjectController;
 	private PassiveIncomeService passiveIncomeService;
 
@@ -36,8 +37,17 @@ public class GameplayScreen extends AbstractScreen{
 		initFlyingStuffController();
 		startTheMusic();
 		initPassiveIncomeService();
+		initPassiveIncomeInfoDialog();
 	}
 	
+	private void initPassiveIncomeInfoDialog() {
+		if(passiveIncomeService.getPointsToAdd() > 0){
+			BasicDialog basicDialog = new BasicDialog();
+			stage.addActor(basicDialog);
+			basicDialog.initContent("Passive income gained: " + passiveIncomeService.getPointsToAdd());
+		}
+	}
+
 	@Override
 	public void render(float delta) {
 		super.render(delta);
@@ -90,7 +100,7 @@ public class GameplayScreen extends AbstractScreen{
 	}
 
 	private void initScoreLabel() {
-		scoreLabel = new ScoreLabel();
+		scoreLabel = new GameLabel();
 		stage.addActor(scoreLabel);
 	}
 
