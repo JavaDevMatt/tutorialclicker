@@ -14,7 +14,7 @@ public class PassiveIncomeService {
 	
 	public PassiveIncomeService(ScoreService scoreService){
 		this.scoreService = scoreService;
-		calculateGainedPassiveIcome();
+		calculateGainedPassiveIncome();
 	}
 	
 	public void start(){
@@ -27,7 +27,7 @@ public class PassiveIncomeService {
 		}, 1, 1, INFINITE);
 	}
 	
-	private void calculateGainedPassiveIcome() {
+	private void calculateGainedPassiveIncome() {
 		long savedTimestamp = scoreService.getSavedTimestamp();
 		if(savedTimestamp > 0){
 			long millisPassed = TimeUtils.timeSinceMillis(savedTimestamp);
