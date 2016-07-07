@@ -34,7 +34,7 @@ public class RandomEventController {
 	}
 	
 	private void triggerRandomEvent() {
-		int randomNumber = MathUtils.random(1, 2);
+		int randomNumber = MathUtils.random(1, 3);
 		switch (randomNumber) {
 		case 1:
 			gainMoneyEvent();
