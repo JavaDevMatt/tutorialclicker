@@ -64,6 +64,8 @@ project(":core") {
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        // https://mvnrepository.com/artifact/org.json/json
+		compile group: 'org.json', name: 'json', version: '20160810'
     }
 }
 
