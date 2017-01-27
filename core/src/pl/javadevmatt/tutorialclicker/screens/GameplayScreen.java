@@ -4,6 +4,7 @@ import pl.javadevmatt.tutorialclicker.TutorialClickerGame;
 import pl.javadevmatt.tutorialclicker.controllers.FlyingObjectController;
 import pl.javadevmatt.tutorialclicker.controllers.RandomEventController;
 import pl.javadevmatt.tutorialclicker.entities.Player;
+import pl.javadevmatt.tutorialclicker.service.FeatureFlagService;
 import pl.javadevmatt.tutorialclicker.service.PassiveIncomeService;
 import pl.javadevmatt.tutorialclicker.ui.BasicDialog;
 import pl.javadevmatt.tutorialclicker.ui.IClickCallback;
@@ -41,8 +42,15 @@ public class GameplayScreen extends AbstractScreen{
 		initPassiveIncomeService();
 		initPassiveIncomeInfoDialog();
 		initRandomEventController();
+		startShop();
 	}
 	
+	private void startShop() {
+		if(game.getFeatureFlagService().hasFeature(FeatureFlagService.FEATURE_SHOP)){
+			game.getShopService().dummyMethod();
+		}
+	}
+
 	private void initRandomEventController() {
 		randomEventController = new RandomEventController(game, stage);
 	}
