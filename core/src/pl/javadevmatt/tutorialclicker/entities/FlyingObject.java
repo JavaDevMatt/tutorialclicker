@@ -69,7 +69,7 @@ public class FlyingObject extends Image{
 
 	private void reactOnClick() {
 		if(FlyingObjectType.MONEY.equals(type)){
-			game.getScoreService().addPoints(50);
+			game.getScoreService().addPoints(game.getBalanceService().getMoneyClickValue());
 		} else if(FlyingObjectType.PASSIVE.equals(type)){
 			game.getScoreService().addPassiveIncome();
 		}
